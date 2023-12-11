@@ -1,0 +1,23 @@
+@Service
+public class MarcaService {
+    @Autowired
+    private MarcaRepository marcaRepository;
+    public Marca save(Marca marca) {
+        return marcaRepository.save(marca);
+        }
+        public List<MarcaDTO> findAll(){
+            return marcaRepository.findAll().stream().map(curso -> new MarcaDTO(marca)).collect(Collectors.toList());
+            }
+        public Optional<Marca> findById(Long id) {
+            return marcaRepository.findById(id);
+            }
+        public Marca update(Marca marca) {
+            return marcaRepository.save(marca);
+            }
+        public void deleteById(Long id) {
+            marcaRepository.deleteById(id);
+            }
+        public List<Marca> findByModalidade(Modalidade modalidade){
+            return (List<MarcaDTO>) marcaRepository.findByModalidade(modalidade);
+                }
+}

@@ -1,0 +1,7 @@
+@Entity
+public class Marca {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+//O resto do código
+}

@@ -1,0 +1,47 @@
+@RestController
+@RequestMapping("/api/v1/marcas")
+public class MarcaResource {
+    @Autowired
+    private MarcaService marcaService;
+    public Marca save(@RequestBody Marca marca){
+        return marcaService.save(marca);
+       }
+       @GetMapping
+            public ResponseEntity<List<MarcaDTO>> findAll(){
+                List<MarcaDTO> marcas = marcaService.findAll();
+                if (marcas == null || marcas.isEmpty()) {
+                    return new ResponseEntity<List<MarcaDTO>>(HttpStatus.NO_CONTENT);
+                }
+                return new ResponseEntity<List<MarcaDTO>>(marcas, HttpStatus.OK);
+       }
+       @GetMapping(path = {"/{id}"})
+            public ResponseEntity<?> findById(@PathVariable Long id){
+                return marcaService.findById(id)
+                .map(record -> ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
+       }
+       @PutMapping(value="/{id}")
+            public ResponseEntity<Marca> update(@PathVariable("id") Long id, @RequestBody Marca marca) {
+                return marcaService.findById(id)
+                .map(record -> {
+                    record.setId(curso.getId());
+                    record.setSigla(curso.getSigla());
+                    record.setModalidade(curso.getModalidade());
+                    Marca updated = marcaService.save(record);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
+       }
+       @DeleteMapping(path ={"/{id}"})
+            public ResponseEntity<?> delete(@PathVariable Long id) {
+                return marcaService.findById(id)
+                .map(record -> {
+                marcaService.deleteById(id);
+                return ResponseEntity.ok().build();
+                }).orElse(ResponseEntity.notFound().build());
+            }    
+       @GetMapping(path = {"modalidade/{modalidade}"})
+            public ResponseEntity<?> findByModalidade(@PathVariable("modalidade") Modalidade modalidade){
+                List<Marca> marcas = marcaService.findByModalidade(modalidade);
+                return marcas == null || marcas.isEmpty()? ResponseEntity.noContent().build() : ResponseEntity.ok(marcas);
+}
+}

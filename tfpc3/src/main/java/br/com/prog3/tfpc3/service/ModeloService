@@ -1,0 +1,20 @@
+@Service
+public class ModeloService {
+@Autowired
+private ModeloRepository modeloRepository;
+public Modelo save(Modelo modelo) {
+    return modeloRepository.save(modelo);
+}
+public List<Modelo> findAll(){
+    return (List<ModeloDTO>) modeloRepository.findAll();
+}
+public Optional<Modelo> findById(Long id) {
+    return modeloRepository.findById(id);
+}
+public Modelo update(Modelo modelo) {
+    return modeloRepository.save(modelo);
+}
+public void deleteById(Long id) {
+    modeloRepository.deleteById(id);
+}
+}

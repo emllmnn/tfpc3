@@ -1,0 +1,10 @@
+public enum Modalidade {
+    MOTO("Moto"),CARRO("Carro");
+    private String descricao;
+    Modalidade(String descricao){
+    this.descricao = descricao;
+}
+    public String getDescricao() {
+        return descricao;
+}
+ }

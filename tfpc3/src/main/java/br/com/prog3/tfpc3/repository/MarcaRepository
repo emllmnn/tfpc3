@@ -1,0 +1,39 @@
+public class MarcaRepository implements MarcaRepositoryInterface{
+    @Override
+    public List<Marca> findAll() {
+    // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public Marca findById(Long id) {
+    // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public List<Marca> findByModalidade(Modalidade modalidade) {
+    // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public Marca inserir(Marca marca) {
+    // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public Marca alterar(Marca marca) {
+    // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public void excluir(Long id) {
+    // TODO Auto-generated method stub
+    }
+    @Override
+    public List<Marca> findAll() {
+        List<Marca> marcas = new ArrayList<>();
+        marcas.add(new Marca(1,"Mercedes",40,Modalidade.CARRO));
+        marcas.add(new Marca(2,"BMW",40,Modalidade.MOTO));
+        marcas.add(new Marca(3,"Ford",40,Modalidade.CARRO));
+        return marcas;
+}
+}

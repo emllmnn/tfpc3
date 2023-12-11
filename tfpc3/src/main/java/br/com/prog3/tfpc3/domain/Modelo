@@ -1,0 +1,18 @@
+@Entity
+public class Modelo implements Serializable{
+private static final long serialVersionUID = 1;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+private String placa;
+private String cor;
+private Integer anoModelo;
+private Integer marca;
+@ManyToOne
+@JoinColumn(name = "id_marca", nullable = true, updatable = true)
+private Marca marca;
+public Modelo() {
+
+}
+//get/set
+}

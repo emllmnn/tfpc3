@@ -1,0 +1,15 @@
+public class ModeloDTO {
+    private Long id;
+    private String placa;
+    private String cor;
+    private Integer anoModelo;
+    private Integer marca;
+    public ModeloDTO(Modelo modelo) {
+        this.id = modelo.getId();
+        this.placa = modelo.getPlaca();
+        this.cor = modelo.getCor();
+        this.anoModelo = modelo.getAnoModelo();
+        this.marca = modelo.getMarca();
+        }
+    //get/set
+    }

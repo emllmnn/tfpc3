@@ -1,0 +1,43 @@
+@RestController
+@RequestMapping("/api/v1/modelos")
+public class ModeloResource {
+@Autowired
+private ModeloService modeloService;
+@GetMapping
+public ResponseEntity<List<Modelo> findAll(){
+    List<Modelo> modelos = modeloService.findAll();
+    if(modelos == null || modelos.isEmpty()) {
+        return new ResponseEntity<List<Modelo>>(HttpStatus.NO_CONTENT);
+}
+    return new ResponseEntity<List<Modelo>>(modelos, HttpStatus.OK);
+}
+@PostMapping
+public Modelo create(@RequestBody Modelo modelos){
+    return modeloService.save(modelo);
+}
+@GetMapping(path = {"/{id}"})
+public ResponseEntity<?> findById(@PathVariable Long id){
+    return modeloService.findById(id)
+    .map(record -> ResponseEntity.ok().body(record))
+    .orElse(ResponseEntity.notFound().build());
+}
+@PutMapping(value="/{id}")
+public ResponseEntity<Modelo> update(@PathVariable("id") Long id, @RequestBody Modelo
+modelo) {
+    return modeloService.findById(id)
+    .map(record -> {
+        record.setDescricao(modelo.getDescricao());
+        record.setMarca(modelo.getMarca());
+        Marca updated = modeloService.save(record);
+        return ResponseEntity.ok().body(updated);
+    }).orElse(ResponseEntity.notFound().build());
+    }
+@DeleteMapping(path ={"/{id}"})
+public ResponseEntity<?> delete(@PathVariable Long id) {
+    return modeloService.findById(id)
+        .map(record -> {
+        modeloService.deleteById(id);
+        return ResponseEntity.ok().build();
+        }).orElse(ResponseEntity.notFound().build());
+        }
+}

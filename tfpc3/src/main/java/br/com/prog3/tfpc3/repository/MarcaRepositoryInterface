@@ -1,0 +1,5 @@
+@Repository
+public interface MarcaRepositoryInterface extends CrudRepository<Marca, Long>{
+    List<Marca> findByModalidade(Modalidade modalidade);
+
+}
